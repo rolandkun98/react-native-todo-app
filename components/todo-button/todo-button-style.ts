@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors, fontFamilies } from "../../utils/style-vars";
 
 export const todoButtonStyles = StyleSheet.create({
   pressable: {
@@ -8,11 +9,11 @@ export const todoButtonStyles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#9fa8da",
+    backgroundColor: colors.secondary,
   },
   text: {
     fontSize: 16,
     textTransform: "uppercase",
-    fontFamily: "Noteworthy",
+    fontFamily: fontFamilies.primary,
   },
 });

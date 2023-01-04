@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors, fontFamilies } from "../../utils/style-vars";
 
 export const todoItemStyles = StyleSheet.create({
   container: {
@@ -10,7 +11,7 @@ export const todoItemStyles = StyleSheet.create({
     paddingBottom: 6,
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#9fa8da",
+    backgroundColor: colors.secondary,
     marginBottom: 3,
     marginTop: 3,
     borderRadius: 8,
@@ -18,11 +19,11 @@ export const todoItemStyles = StyleSheet.create({
   },
   text: {
     textTransform: "uppercase",
-    fontFamily: "Noteworthy",
+    fontFamily: fontFamilies.primary,
     letterSpacing: 1,
   },
   icon: {
     fontSize: 30,
-    color: "#3f51b5",
+    color: colors.primary,
   },
 });
