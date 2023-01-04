@@ -23,7 +23,7 @@ export default function App() {
       const id = uuid.v4().toString();
       const trimedTodo = todo.trim();
       setTodoList((currentList) => [...currentList, { id, text: trimedTodo }]);
-      Alert.alert("New todo", "A new todo has been added to your list!", [
+      Alert.alert("A new todo", "A new todo has been added to your list!", [
         { text: "Let's go", style: "default" },
       ]);
     } else {
