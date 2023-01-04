@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import TodoList from "./pages/todo-list/todo-list";
+import TodoList from "./screens/todo-list/todo-list";
 import { StatusBar } from "expo-status-bar";
 
 export default function App() {
