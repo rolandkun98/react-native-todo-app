@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { View, Alert } from "react-native";
 import uuid from "react-native-uuid";
 import { TodoButton } from "../../components/todo-button/todo-button";
 import { TodoModal } from "../../components/todo-modal/todo-modal";
@@ -19,13 +19,26 @@ export default function App() {
     setIsModalOpen(false);
   };
   const handleAddNewTodo = (todo: string) => {
-    const id = uuid.v4().toString();
-    setTodoList((currentList) => [...currentList, { id, text: todo }]);
+    if (todo && todo.trim()) {
+      const id = uuid.v4().toString();
+      const trimedTodo = todo.trim();
+      setTodoList((currentList) => [...currentList, { id, text: trimedTodo }]);
+      Alert.alert("New todo", "A new todo has been added to your list!", [
+        { text: "Let's go", style: "default" },
+      ]);
+    } else {
+      Alert.alert("You're lazy!", "Please write some todo!", [
+        { text: "Hmm", style: "default" },
+      ]);
+    }
   };
   const handleFinishedTodo = (id: string) => {
     setTodoList((currentList) => {
       return currentList.filter((todo) => todo.id !== id);
     });
+    Alert.alert("You're star!", "You've finished your todo!", [
+      { text: "Yeah", style: "default" },
+    ]);
   };
 
   return (
