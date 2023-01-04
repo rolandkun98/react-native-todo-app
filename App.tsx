@@ -1,20 +1,27 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import TodoList from "./screens/todo-list/todo-list";
 import { StatusBar } from "expo-status-bar";
+import { colors } from "./utils/style-vars";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={styles.outerContainer}>
       <StatusBar style="light" />
-      <TodoList />
+      <SafeAreaView style={styles.innerContainer}>
+        <TodoList />
+      </SafeAreaView>
     </View>
   );
 }
 
 export const styles = StyleSheet.create({
-  container: {
+  outerContainer: {
     flex: 1,
-    paddingTop: 50,
+    backgroundColor: colors.primary,
+  },
+  innerContainer: {
+    flex: 1,
     alignItems: "center",
+    marginTop: 50,
   },
 });
