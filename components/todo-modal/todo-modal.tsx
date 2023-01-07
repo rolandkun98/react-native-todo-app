@@ -1,8 +1,15 @@
-import { Modal, View, TextInput } from "react-native";
+import {
+  Modal,
+  View,
+  TextInput,
+  KeyboardAvoidingView,
+  useWindowDimensions,
+} from "react-native";
 import { TodoButton } from "../todo-button/todo-button";
 import { TodoTitle } from "../todo-title/todo-title";
 import { useState } from "react";
 import { todoModalStyles } from "./todo-modal-style";
+import { getOrientation } from "../../utils/get-orientation";
 
 interface TodoModalProps {
   isModalOpen: boolean;
@@ -16,6 +23,7 @@ export const TodoModal = ({
   handleAddNewTodo,
 }: TodoModalProps) => {
   const [todo, setTodo] = useState("");
+  const { height } = useWindowDimensions();
 
   const handleOnPress = () => {
     handleAddNewTodo(todo);
@@ -23,19 +31,27 @@ export const TodoModal = ({
   };
 
   return (
-    <Modal visible={isModalOpen} animationType="slide">
-      <View style={todoModalStyles.container}>
-        <TodoTitle text="Add new todo" />
-        <TextInput
-          style={todoModalStyles.textInput}
-          onChangeText={(text) => setTodo(text)}
-          value={todo}
-        />
-        <View style={todoModalStyles.buttonContainer}>
-          <TodoButton text="Add" handleOnPress={handleOnPress} />
-          <TodoButton text="Cancel" handleOnPress={handleModalClose} />
+    <Modal
+      visible={isModalOpen}
+      animationType="slide"
+      supportedOrientations={["portrait", "landscape"]}
+    >
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+        <View style={todoModalStyles(getOrientation(height)).container}>
+          <View style={todoModalStyles(getOrientation(height)).headerContainer}>
+            <TodoTitle text="Add new todo" />
+            <TextInput
+              style={todoModalStyles(getOrientation(height)).textInput}
+              onChangeText={(text) => setTodo(text)}
+              value={todo}
+            />
+          </View>
+          <View style={todoModalStyles(getOrientation(height)).buttonContainer}>
+            <TodoButton text="Add" handleOnPress={handleOnPress} />
+            <TodoButton text="Cancel" handleOnPress={handleModalClose} />
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
