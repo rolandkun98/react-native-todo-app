@@ -8,4 +8,7 @@ export const todosContainerStyles = StyleSheet.create({
     alignItems: "center",
     padding: 8,
   },
+  list: {
+    width: "100%",
+  },
 });

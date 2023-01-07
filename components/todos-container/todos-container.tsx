@@ -22,7 +22,7 @@ export const TodosContainer = ({
         keyExtractor={(item) => item.id}
         scrollEnabled={true}
         alwaysBounceVertical={false}
-        style={{ width: "100%" }}
+        style={todosContainerStyles.list}
       />
     </View>
   );
