@@ -1,27 +1,15 @@
-import { StyleSheet, View, SafeAreaView } from "react-native";
 import TodoList from "./screens/todo-list/todo-list";
 import { StatusBar } from "expo-status-bar";
-import { colors } from "./utils/style-vars";
+import { ScreensWrapper } from "./components/wrappers/screens-wrapper/screens-wrapper";
+import { MainWrapper } from "./components/wrappers/main-wrapper/main-wrapper";
 
 export default function App() {
   return (
-    <View style={styles.outerContainer}>
+    <MainWrapper>
       <StatusBar style="light" />
-      <SafeAreaView style={styles.innerContainer}>
+      <ScreensWrapper>
         <TodoList />
-      </SafeAreaView>
-    </View>
+      </ScreensWrapper>
+    </MainWrapper>
   );
 }
-
-export const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: colors.primary,
-  },
-  innerContainer: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 50,
-  },
-});
