@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { View, Alert } from "react-native";
+import { View, Alert, useWindowDimensions } from "react-native";
 import uuid from "react-native-uuid";
 import { TodoButton } from "../../components/todo-button/todo-button";
 import { TodoModal } from "../../components/todo-modal/todo-modal";
 import { TodoTitle } from "../../components/todo-title/todo-title";
 import { TodosContainer } from "../../components/todos-container/todos-container";
 import { Todo } from "../../types/types";
+import { getOrientation } from "../../utils/get-orientation";
 import { todoListStyles } from "./todo-list-style";
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [todoList, setTodoList] = useState<Todo[]>([]);
+  const { height } = useWindowDimensions();
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -43,14 +45,16 @@ export default function App() {
 
   return (
     <>
-      <TodoTitle text="Todo list" />
       <TodoModal
         isModalOpen={isModalOpen}
         handleModalClose={handleModalClose}
         handleAddNewTodo={handleAddNewTodo}
       />
-      <TodoButton text="Add new todo" handleOnPress={handleModalOpen} />
-      <View style={todoListStyles.separator}></View>
+      <View style={todoListStyles(getOrientation(height)).headerContainer}>
+        <TodoTitle text="Todo list" />
+        <TodoButton text="Add new todo" handleOnPress={handleModalOpen} />
+      </View>
+      <View style={todoListStyles(getOrientation(height)).separator}></View>
       <TodosContainer
         todoList={todoList}
         handleFinishedTodo={handleFinishedTodo}
