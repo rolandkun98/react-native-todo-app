@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View } from "react-native";
+import { FlatList, View } from "react-native";
 import { Todo } from "../../types/types";
 import { TodoItem } from "../todo-item/todo-item";
 import { todosContainerStyles } from "./todos-container-style";
